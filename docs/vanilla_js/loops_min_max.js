@@ -3,7 +3,7 @@ const fs = require("fs");
 
 const filepath =
   process.platform === "linux" ? "/dev/stdin" : "docs/vanilla_js/input.txt";
-let input = fs.readFileSync(filepath).toString().trim().split(",");
+let input = fs.readFileSync(filepath).toString().trim().split("\n");
 let num = parseInt(input[0]);
 let inputs = input[1].trim().split(" ").map(Number);
 
