@@ -3,9 +3,11 @@ const fs = require("fs");
 
 const filepath =
   process.platform === "linux" ? "/dev/stdin" : "docs/vanilla_js/input.txt";
-let inputs = fs.readFileSync(filepath).toString().trim().split(" ").map(Number);
+let input = fs.readFileSync(filepath).toString().trim().split(",");
+let num = parseInt(input[0]);
+let inputs = input[1].trim().split(" ").map(Number);
 
-let min_max = { min: 100, max: 0 };
+let min_max = { min: 1000000, max: -1000000 };
 for (let i = 0; i < inputs.length; i++) {
   if (min_max.min > inputs[i]) {
     min_max.min = inputs[i];
