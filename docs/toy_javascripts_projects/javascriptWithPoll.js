@@ -61,7 +61,8 @@ let input_fun = (num) => {
   console.log(`답: ${inputs[num]}\n`);
 };
 
-//답항 출력 function
+// 답항 출력 function
+// 답항 갯수로 매칭
 let print_example = (example_uid_count) => {
   let add = "";
   for (let i = 0; i < example_uid_count; i++) {
@@ -73,6 +74,7 @@ let print_example = (example_uid_count) => {
 // question 출력
 let print_question = (question_uid, example_uid_count) => {
   for (question of questions_uid) {
+    //question 매칭
     if (question["questions_uid"] === question_uid) {
       console.log(question["questions"]);
       console.log(print_example(example_uid_count));
