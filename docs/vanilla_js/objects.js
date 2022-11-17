@@ -5,7 +5,7 @@ console.log(animal.name);
 
 let animal_keys = Object.keys(animal);
 for (let key of animal_keys) {
-  console.log(`${key} : ${animal[key]}`); //animal['name'], anima;['species']
+  console.log(`${key} : ${animal[key]}`); //animal['name'], animal;['species']
 }
 
 const animals_obj = [
