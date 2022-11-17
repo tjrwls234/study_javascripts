@@ -14,3 +14,37 @@ function sum(item_first, item_second) {
   sum_number = 6 + 9;
   let sum_function = sum(1, 2); //item_first = 1, item_second=2
 }
+
+// anonymouse Function
+let calculateSum = function (item_first, item_second) {
+  return item_first + item_second;
+};
+
+{
+  console.log(`${calculateSum(5, 7)}`);
+}
+
+// Arrow Function
+let calculateSumSecond = (item_first, item_second) => {
+  return item_first + item_second;
+};
+
+{
+  let result = calculateSumSecond(7, 8);
+  console.log(`${result}`);
+  console.log(`${calculateSumSecond(7, 8)}`);
+}
+
+// rest parameters
+function printRestParams(...args) {
+  let restParam = (arg) => {
+    console.log(`arg : ${arg}`);
+  };
+
+  args.forEach(restParam);
+}
+
+{
+  printRestParams(2, 4, 5);
+  printRestParams(2, 4, 5, 6, 7);
+}
