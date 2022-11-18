@@ -78,25 +78,46 @@ let answers = [
   { questions_uid: "Q5", example_uid: "E3" },
 ];
 //function
+let checkExample = (example, answer, answer_list) => {
+  if (example["example_uid"] == answer["example_uid"]) {
+    answer_list += example["answer"] + " ";
+  }
+  return answer_list;
+};
+
+let checkAnswer = (example, i) => {
+  if (example["orders"] == inputs[i - 1]) {
+    console.log(`${example["answer"]}`);
+    console.log(" ");
+  }
+};
+
+let checkQuestion = (question, i) => {
+  if (question["orders"] == i) {
+    console.log(`${i} : ${question["questions"]}`);
+
+    for (example of example_list) {
+      checkAnswer(example, i);
+    }
+  }
+};
 
 // 출력
 for (let i = 1; i <= 5; i++) {
-  for (question of questions_uid) {
+  questions_uid.forEach((question) => {
     if (question["orders"] == i) {
       console.log(`${i} : ${question["questions"]}`);
       let answer_list = "";
       for (answer of answers) {
         if (answer["questions_uid"] == question["questions_uid"]) {
           for (example of example_list) {
-            if (example["example_uid"] == answer["example_uid"]) {
-              answer_list += example["answer"] + " ";
-            }
+            answer_list = checkExample(example, answer, answer_list);
           }
         }
       }
       console.log(answer_list);
     }
-  }
+  });
   console.log(`답 : ${inputs[i - 1]}`);
   console.log("");
 }
@@ -104,15 +125,6 @@ for (let i = 1; i <= 5; i++) {
 console.log("--------------------- 설문자 선택 ---------------------------");
 for (let i = 1; i <= 5; i++) {
   for (question of questions_uid) {
-    if (question["orders"] == i) {
-      console.log(`${i} : ${question["questions"]}`);
-
-      for (example of example_list) {
-        if (example["orders"] == inputs[i - 1]) {
-          console.log(`${example["answer"]}`);
-          console.log(" ");
-        }
-      }
-    }
+    checkQuestion(question, i);
   }
 }
