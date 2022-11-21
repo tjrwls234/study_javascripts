@@ -28,17 +28,28 @@
 
     <script>
       bodySelectorAll = document.querySelectorAll("body");
-      console.log(bodySelectorAll);
       bodySelectorAll.forEach((element) => {
         console.log(element);
       });
 
+      //이것은 리스트가져오기
       let listSelectorAll = document.querySelectorAll(".list");
-      console.log(listSelectorAll);
-      listSelectorAll.forEach((listSelector) => {
-        console.log(listSelector);
 
-        // console.log(list);
+      //리스트 forEash
+      listSelectorAll.forEach((listSelector, index) => {
+        console.log(`${index + 1}번째 리스트`);
+        console.log(listSelector);
+        //띄어쓰기
+        console.log("");
+        console.log(`${index + 1}. item 각각 출력`);
+        let list = listSelector.querySelectorAll(".item");
+
+        //각각 리스트 출력
+        list.forEach((li) => {
+          console.log(li);
+        });
+        //띄어 쓰기
+        console.log("");
       });
     </script>
   </body>
