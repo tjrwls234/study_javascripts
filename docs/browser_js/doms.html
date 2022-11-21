@@ -4,10 +4,29 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>My title</title>
   </head>
   <body>
-    <a href=""></a>
+    <a href="" id="aTag">My link</a>
     <h1>My header</h1>
+    <div class="container">
+      <div class="inner first">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+      </div>
+      <div class="inner second">
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+      </div>
+    </div>
+
+    <script>
+      let queryId_a = document.querySelector("#aTag");
+      // <div class="item">5</div> 선택
+      let queryContainer = document.querySelector(".container");
+      console.log(`${queryContainer.children[1].children[1]}`);
+    </script>
   </body>
 </html>
