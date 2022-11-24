@@ -1,30 +1,6 @@
-// * 화면 정의서 대로 출력
-// - datatypes : Array, Object
-// - functions : 3개 만들기
-// - 답변은 미리 file에 저장된 것을 사용.
-// - forEach 1회 이상 사용
-
-// - 프로세스
-// -- 입력
-// + 설문 문항 사항 : object in Array - [{문항}, {문항}, {문항}, {문항}] (option : orders 표시된 순서를 오름차순 정렬)
-// + 설문 답항 대한 사항 - [{답항},{답항},{답항},{답항}] (option : orders 표시된 순서를 오름차순 정렬)
-// + 답변에 대한 사항 - [1, 2, 4, 3]
-
-// --- 처리
-// + 문항, 설문 답항, 답변 매칭 - data_sheets > answers 기준
-
-// --- 출력
-// + 매칭 출력
 let fs = require("fs");
 
-// const filepath =
-//   process.platform === "linux" ? "/dev/stdin" : "docs/vanilla_js/input.txt";
-// let input = fs.readFileSync(filepath).toString().trim().split("\n").map(Number);
-
-let input_answers = [1, 2, 4, 3, 1];
-// for (let i = 0; i < 5; i++) {
-//   input_answers[i] = input[i];
-// }
+let user_answers = [1, 2, 4, 3, 1];
 
 const questions_list = [
   {
@@ -45,12 +21,12 @@ const questions_list = [
   {
     question: "해당 매장을 다음에도 재방문 하실 의향이 있으십니까?",
     questions_uid: "Q5",
-    order: 5,
+    order: 4,
   },
   {
     question: "직원이 제조한 음료에 대해 맛은 좋았습니까?",
     questions_uid: "Q4",
-    order: 4,
+    order: 5,
   },
 ];
 
@@ -62,7 +38,7 @@ const example_list = [
   { example: "매우 그렇다", example_uid: "E5", order: 5 },
 ];
 
-const answers = [
+const questions_answers = [
   { questions_uid: "Q1", example_uid: "E1" },
   { questions_uid: "Q1", example_uid: "E2" },
   { questions_uid: "Q1", example_uid: "E3" },
@@ -84,29 +60,36 @@ const answers = [
 
 let question_compare;
 let idx;
-let question_array = [];
-let question_array_list = [];
-
-for (idx = 0; idx < answers.length; idx++) {
-  if (question_compare == answers[idx]["questions_uid"]) {
-    for (let j = 0; j < example_list.length; j++) {
-      if (answers[idx]["example_uid"] == example_list[j]["example_uid"])
-        question_array.push(example_list[j]["example"]);
+let polls = [];
+let questions = []; // questions and answers
+for (idx = 0; idx < questions_answers.length; idx++) {
+  if (question_compare != questions_answers[idx]["questions_uid"]) {
+    if (questions.length > 0) {
+      polls.push(questions);
+      questions = [];
     }
+    questions.push(questions_answers[idx]["questions_uid"]);
+    questions.push(questions_answers[idx]["example_uid"]);
+    console.log(
+      `!= : ${questions_answers[idx]["questions_uid"]}, ${questions_answers[idx]["example_uid"]}`
+    );
   } else {
-    question_array = [];
-    for (let i = 0; i < questions_list.length; i++) {
-      if (answers[idx]["questions_uid"] == questions_list[i]["questions_uid"]) {
-        question_array.push(questions_list[i]["question"]);
-        for (let j = 0; j < example_list.length; j++) {
-          if (answers[idx]["example_uid"] == example_list[j]["example_uid"])
-            question_array.push(example_list[j]["example"]);
-        }
-      }
+    questions.push(questions_answers[idx]["example_uid"]);
+    console.log(
+      `== : ${questions_answers[idx]["questions_uid"]}, ${questions_answers[idx]["example_uid"]}`
+    );
+    if (idx + 1 >= questions_answers.length) {
+      polls.push(questions);
     }
   }
 
-  question_array_list.push(question_array);
-  question_compare = answers[idx]["questions_uid"];
+  question_compare = questions_answers[idx]["questions_uid"];
 }
-console.log();
+
+for (let idx = 0; idx < polls.length; idx++) {
+  for (let idx2 = 0; idx2 < polls[idx].length; idx2++) {
+    let question = polls[idx][idx2];
+    console.log(question);
+  }
+}
+console.log(`${questions_answers.length}, ${idx}`);
