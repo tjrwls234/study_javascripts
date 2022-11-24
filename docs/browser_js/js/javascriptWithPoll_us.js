@@ -84,4 +84,5 @@ for (let idx = 0; idx < questions_answers.length; idx++) {
   }
   question_compare = questions_answers[idx]["questions_uid"]; //이전 uid 입력
 }
+polls.push(questions);
 console.log(`${polls}`);
