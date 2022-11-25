@@ -93,8 +93,6 @@ for (let idx = 0; idx < questions_answers.length; idx++) {
   question_compare = questions_answers[idx]["questions_uid"]; //이전 uid 입력
 }
 
-console.log(`${polls}`);
-
 // 출력
 // [
 //  {questions_uid : Q1, answer_uids : [E1, E2]},
@@ -132,12 +130,73 @@ function getanswerByUid(answer_uid) {
 }
 
 for (poll of polls) {
-  console.log(
-    `${poll["questions_uid"]}. ${getQuestionByUid(poll["questions_uid"])}`
-  );
+  let question_desc = getQuestionByUid(poll["questions_uid"]);
+  //console.log(`${poll["questions_uid"]}. ${question_desc}`);
   let answer_uids = poll["answer_uids"];
   answer_uids.forEach((answer_uid, index) => {
-    console.log(`${index + 1}. ${getanswerByUid(answer_uid)}`);
+    //answers
+    //console.log(`${index + 1}. ${getanswerByUid(answer_uid)}`);
   });
 }
-console.log();
+
+// Event handlers
+// Next 클릭 시 순서 있게 설문 표시
+// 대상 변수는 polls
+let index = 0;
+let queryNext = document.querySelector("#next");
+index = queryNext.addEventListener("click", setPollContent(index));
+
+let queryPrev = document.querySelector("#prev");
+index = queryPrev.addEventListener("click", prevPollContent(index));
+
+function prevPollContent(index) {
+  if (index <= 0) {
+    alert("경고");
+  } else {
+    index--;
+    let queryContent = document.querySelector("#poll-contents");
+    // polls[0]["questions_uid"]; //설문 문항
+    // polls[0]["answer_uids"]; // 설문 답항 묶음
+    // console.log(getQuestionByUid(polls[index]["questions_uid"]));
+    let desc = `<div>${index + 1}. ${getQuestionByUid(
+      polls[index]["questions_uid"]
+    )}</div>`;
+
+    polls[index]["answer_uids"].forEach((answer_uid, index) => {
+      // answers
+      // console.log(`${index + 1}. ${getanswerByUid(answer_uid)}`);
+      desc =
+        desc +
+        `<div><input type = "radio", name="answer_radio">(${
+          index + 1
+        }) ${getanswerByUid(answer_uid)}</input></div>`;
+    });
+    queryContent.innerHTML = desc;
+  }
+}
+
+function setPollContent(index) {
+  if (index < 5) {
+    let queryContent = document.querySelector("#poll-contents");
+    // polls[0]["questions_uid"]; //설문 문항
+    // polls[0]["answer_uids"]; // 설문 답항 묶음
+    // console.log(getQuestionByUid(polls[index]["questions_uid"]));
+    let desc = `<div>${index + 1}. ${getQuestionByUid(
+      polls[index]["questions_uid"]
+    )}</div>`;
+
+    polls[index]["answer_uids"].forEach((answer_uid, index) => {
+      // answers
+      // console.log(`${index + 1}. ${getanswerByUid(answer_uid)}`);
+      desc =
+        desc +
+        `<div><input type = "radio", name="answer_radio">(${
+          index + 1
+        }) ${getanswerByUid(answer_uid)}</input></div>`;
+    });
+    queryContent.innerHTML = desc;
+    index++;
+  } else {
+    alert("설문 끝");
+  }
+}
