@@ -10,13 +10,13 @@ let queryReset_btn = document.querySelector("#reset_btn");
 
 //버튼별 eventListener
 queryDisplay_btn.addEventListener("click", (event) => {
-  displayfun;
+  displayfun(event);
 });
 queryVisibility_btn.addEventListener("click", (event) => {
-  visibilityfun;
+  visibilityfun(event);
 });
 queryReset_btn.addEventListener("click", (event) => {
-  resetfun;
+  resetfun(event);
 });
 
 //function
@@ -31,6 +31,6 @@ function visibilityfun(event) {
 }
 
 function resetfun(event) {
-  queryReset.style.display = "block";
+  queryDisplay.style.display = "block";
   queryVisibility.style.visibility = "visible";
 }
