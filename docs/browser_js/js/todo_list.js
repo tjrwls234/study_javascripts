@@ -9,7 +9,7 @@ addTextBtn.addEventListener("click", (event) => {
 //엔터
 inputText.addEventListener("keydown", (event) => {
   if (event.code == "Enter") {
-    addTextFunction(inputText.value);
+    addTextFunction(inputText);
   }
 });
 
@@ -19,7 +19,7 @@ function addTextFunction(text) {
     window.alert("Please enter a task");
     return;
   }
-  let item;
+  let item = "";
   item = `  <div class="list-box">
                     <div id="output-text">${inputText.value}</div>
                     <div class="icon">
