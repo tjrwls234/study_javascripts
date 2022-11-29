@@ -37,11 +37,10 @@ let list = document.querySelector(".list");
 list.addEventListener("click", (event) => {
   if (event.target.innerHTML == "favorite_border") {
     event.target.innerHTML = "favorite";
-  } else {
+  } else if (event.target.innerHTML == "favorite") {
     event.target.innerHTML = "favorite_border";
-  }
-
-  if (event.target.innerHTML == "delete") {
+  } else if (event.target.innerHTML == "delete") {
     event.target.parentElement.parentElement.parentElement.remove();
+  } else {
   }
 });

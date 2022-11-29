@@ -1,21 +1,26 @@
 h1 {
-  font-size: 50px;
+  display: flex;
+  font-size: 4rem;
   background-color: purple;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 8rem;
 }
 
 #addText-button {
   width: 130px;
-  font-size: 30px;
+  font-size: 2rem;
   padding: 5px;
   color: white;
   background-color: purple;
   border-radius: 5px;
   border: 0px;
+  margin-left: 1rem;
 }
 
 #inputText {
-  width: 500px;
+  width: 30rem;
   font-size: 30px;
   height: 50px;
   padding: 5px;
@@ -33,13 +38,21 @@ h1 {
   cursor: pointer;
 }
 
+.add-box {
+  display: flex;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+}
 .list-box {
   display: flex;
   border: 1px black solid;
-  width: 680px;
-  height: 50px;
-  font-size: 30px;
+
+  height: 3rem;
+  font-size: 2rem;
   margin-top: 5px;
   padding: 10px;
   justify-content: space-between;
+  align-items: center;
 }
