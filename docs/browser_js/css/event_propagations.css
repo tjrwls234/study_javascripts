@@ -1,0 +1,8 @@
+* {
+  border: solid gray 1px;
+  padding: 0.1rem;
+}
+
+.delete:hover {
+  cursor: pointer;
+}
