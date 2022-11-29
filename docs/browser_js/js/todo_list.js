@@ -8,7 +8,7 @@ addTextBtn.addEventListener("click", (event) => {
 
 //엔터
 inputText.addEventListener("keydown", (event) => {
-  if (event.code == "Enter") {
+  if (event.key == "Enter") {
     addTextFunction(inputText);
   }
 });
@@ -23,7 +23,7 @@ function addTextFunction(text) {
   item = `  <div class="list-box">
                     <div id="output-text">${inputText.value}</div>
                     <div class="icon">
-                    <span><i class="material-icons favorite">favorite</i></span>
+                    <span><i class="material-icons favorite">favorite_border</i></span>
                     <span><i class="material-icons delete">delete</i></span>
                     </div>
                 </div>`;
@@ -35,12 +35,10 @@ function addTextFunction(text) {
 
 let list = document.querySelector(".list");
 list.addEventListener("click", (event) => {
-  if (event.target.innerHTML == "favorite") {
-    if (event.target.style.color != "red") {
-      event.target.style.color = "red";
-    } else {
-      event.target.style.color = "gray";
-    }
+  if (event.target.innerHTML == "favorite_border") {
+    event.target.innerHTML = "favorite";
+  } else {
+    event.target.innerHTML = "favorite_border";
   }
 
   if (event.target.innerHTML == "delete") {
